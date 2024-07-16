@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./navbar.scss";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [open,setOpen]=useState(false)
@@ -10,16 +11,17 @@ const Navbar = () => {
           <img src="/logo.png"></img>
           <span>Estate</span>
         </a>
-        <a href="/">Home</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
-        <a href="/">Agents</a>
+        
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/">Agents</Link>
       </div>
       <div className="right">
-        <a href="/">Sign in</a>
-        <a className="register" href="/">
+        <Link to="/">Sign in</Link>
+        <Link to ="/" className="register" >
           Sign up
-        </a>
+        </Link>
         <div className="menuIcon">
           <img src="/menu.png" alt=""  onClick={()=>setOpen(!open)}/>
         </div>

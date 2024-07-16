@@ -43,7 +43,7 @@ function SearchBar() {
           max={10000000}
           placeholder="Max Price"
         />
-        <button>test</button>
+        <button><img src="/search.png" alt=""/></button>
      
       </form>
     </div>
