@@ -5,6 +5,7 @@
   .listContainer {
     flex: 3;
     height: 100%;
+    
     .wrapper {  
       height: 100%;
       padding-right: 50px;
@@ -18,5 +19,6 @@
   .mapContainer {
     flex: 2;
     background-color: #fcf5f3;
+    height: 100%;
   }
 }
