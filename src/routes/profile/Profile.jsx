@@ -1,5 +1,6 @@
 import List from "../../components/list/List";
 import "./profile.scss";
+import Chat from "../../components/chat/Chat";
 
 function Profile() {
   return (
@@ -34,7 +35,9 @@ function Profile() {
 
 
       <div className="chatContainer">
-        <div className="wrapper"></div>
+        <div className="wrapper">
+          <Chat/>
+        </div>
       </div>
 
     
