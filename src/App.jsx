@@ -4,6 +4,7 @@ import ListPage from "./routes/listPage/ListPage";
 import SinglePage from "./routes/singlePage/SinglePage";
 import Profile from "./routes/profile/Profile";
 import Register from "./routes/register/Register";
+import Login from "./routes/login/Login";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -17,7 +18,8 @@ function App() {
         { path: "/list", element: <ListPage /> },
         { path: "/:id", element: <SinglePage /> },
         { path: "/profile", element: <Profile /> },
-        { path: "/register", element: <Register /> }
+        { path: "/register", element: <Register /> },
+        { path: "/login", element: <Login /> }
 
       ],
     },

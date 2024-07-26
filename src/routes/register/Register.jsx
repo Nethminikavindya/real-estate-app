@@ -9,13 +9,10 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErr(false);
     setLoading(true);
-
-    
 
     const formData = new FormData(e.target);
 
@@ -42,12 +39,11 @@ function Register() {
     <div className="register">
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
-          {" "}
           <h1>Create an Account</h1>
           <input name="username" type="text" placeholder="Username" />
           <input name="email" type="text" placeholder="Email" />
           <input name="password" type="password" placeholder="Password" />
-          <button disabled={loading} >Register</button>
+          <button disabled={loading}>Register</button>
           {err && <span>{err}</span>}
 
           <Link to="/login">Do you have an account?</Link>
