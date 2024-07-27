@@ -3,18 +3,24 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const {updateUser} = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErr(false);
+    setErr("");
     setLoading(true);
 
     const formData = new FormData(e.target);
+    
     const username = formData.get("username");
     const password = formData.get("password");
 
@@ -24,8 +30,8 @@ function Login() {
         password,
       });
     
-    localStorage.setItem("user", JSON.stringify(res.data));
-    navigate("/");
+      updateUser(res.data)
+      navigate("/");
       
     } catch (err) {
       setErr(err.response.data.message);
