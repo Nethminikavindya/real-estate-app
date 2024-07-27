@@ -8,6 +8,7 @@ function SearchBar() {
     location: "",
     minPrice: 0,
     maxPrice: 0,
+    
   });
 
   const switchType = (val) => {

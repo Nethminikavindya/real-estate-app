@@ -8,6 +8,7 @@ function Layout() {
       <div className="navbar">
         <Navbar />
       </div>
+      
       <div className="content">
         <Outlet />
       </div>
