@@ -74,7 +74,7 @@ console.log("Generated token:", token)
         maxAge: age,
       })
     res.status(200)
-      .json({ message: "Logged in successfully", user: userData });
+      .json( userData );
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Failed to login" });
