@@ -5,11 +5,14 @@ import apiRequest from "../../lib/apiRequest";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function Profile() {
   const { updateUser, currentUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
+  
 
   const handleLogout = async () => {
     try {
@@ -21,14 +24,15 @@ function Profile() {
     }
   };
   return (
-    console.log(currentUser),
+    
     (
       <div className="profile">
         <div className="details">
           <div className="wrapper">
             <div className="title">
               <h1>User Information</h1>
-              <button>Update Profile</button>
+            <Link to="/profile/update" ><button>Update Profile</button></Link>
+              
             </div>
 
             <div className="info">

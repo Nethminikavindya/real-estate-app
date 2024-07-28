@@ -46,7 +46,7 @@ function Login() {
           <h1>Create an Account</h1>
           <input name="username" required minLength={3} maxLength={20} type="text" placeholder="Username" />
           <input name="password" type="password" required placeholder="Password" />
-          <button disabled={loading}>Register</button>
+          <button disabled={loading}>Login</button>
           {err && <span>{err}</span>}
           <Link to="/login">Do you have an account?</Link>
         </form>
