@@ -50,6 +50,7 @@ if (id !== tokenUserId) {
         ...(avatar && { avatar}),
       },
     });
+    
     res.status(200).json(updatedUser);
   } catch (err) {
     console.log(err);
