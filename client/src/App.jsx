@@ -6,8 +6,8 @@ import Profile from "./routes/profile/Profile";
 import Register from "./routes/register/Register";
 import Login from "./routes/login/Login";
 import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage.jsx";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NewPostPage from "./routes/newPostPage/NewPostPage.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -30,6 +30,7 @@ function App() {
   children: [
     { path: "/profile", element: <Profile /> },
     { path: "/profile/update", element: <ProfileUpdatePage /> },
+    { path: "/add", element: <NewPostPage /> },
 
   ],
 },
