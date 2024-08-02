@@ -2,7 +2,7 @@ import prisma from "../lib/prisma.js";
 
 export const getPosts = async (req, res) => {
   const query=req.query;
-  console.log(query)
+  
   try {
     const posts = await prisma.post.findMany({
       where:{
@@ -11,13 +11,16 @@ export const getPosts = async (req, res) => {
         property:query.property || undefined,
         bedroom:parseInt(query.bedroom) || undefined ,
         price :{
-          gte:parseInt(query.minPrice) || 0,
-          lte:parseInt(query.maxPrice) || 10000000,
+          gte:parseInt(query.minPrice) || undefined,
+          lte:parseInt(query.maxPrice) || undefined,
 
-        }
-      }
+        },
+      },
     });
-    res.status(200).json(posts);
+   // setTimeout(()=>{
+      res.status(200).json(posts);
+   // },300);
+   
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Error retrieving posts" });
