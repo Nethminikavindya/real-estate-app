@@ -8,7 +8,7 @@ import Login from "./routes/login/Login";
 import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewPostPage from "./routes/newPostPage/NewPostPage.jsx";
-import { singlePageLoader } from "./lib/loaders.js";
+import { singlePageLoader, listPageLoader} from "./lib/loaders.js";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,7 +17,7 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
-        { path: "/list", element: <ListPage /> },
+        { path: "/list", element: <ListPage />,loader:listPageLoader },
         { path: "/:id", element: <SinglePage /> ,loader:singlePageLoader},
        
         { path: "/register", element: <Register /> },
