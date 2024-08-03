@@ -8,7 +8,7 @@ import Login from "./routes/login/Login";
 import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewPostPage from "./routes/newPostPage/NewPostPage.jsx";
-import { singlePageLoader, listPageLoader} from "./lib/loaders.js";
+import { singlePageLoader, listPageLoader, profilePageLoader} from "./lib/loaders.js";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,7 +21,7 @@ function App() {
         { path: "/:id", element: <SinglePage /> ,loader:singlePageLoader},
        
         { path: "/register", element: <Register /> },
-        { path: "/login", element: <Login /> }
+        { path: "/login", element: <Login /> },
 
       ],
     },
@@ -29,7 +29,7 @@ function App() {
   path: "/",
   element: <RequireAuth />,
   children: [
-    { path: "/profile", element: <Profile /> },
+    { path: "/profile", element: <Profile /> ,loader:profilePageLoader},
     { path: "/profile/update", element: <ProfileUpdatePage /> },
     { path: "/add", element: <NewPostPage /> },
 
