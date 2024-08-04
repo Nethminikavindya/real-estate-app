@@ -8,6 +8,8 @@ import { AuthContext } from "../../context/AuthContext";
 
 
 function Profile() {
+
+
   const data = useLoaderData();
   const { updateUser, currentUser } = useContext(AuthContext);
 
@@ -79,7 +81,15 @@ function Profile() {
 
       <div className="chatContainer">
         <div className="wrapper">
-          <Chat />
+        <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.chatResponse}
+              errorElement={<p>Error loading chats!</p>}
+            >
+              {(chatResponse) => <Chat chats={chatResponse.data} />}
+            </Await>
+          </Suspense>
+         
         </div>
       </div>
     </div>
