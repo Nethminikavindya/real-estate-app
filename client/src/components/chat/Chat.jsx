@@ -1,16 +1,29 @@
 import { AuthContext } from "../../context/AuthContext";
+import { SocketContext } from "../../context/SocketContext";
 import apiRequest from "../../lib/apiRequest";
 import "./chat.scss";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { format } from "timeago.js";
 
 function Chat({ chats }) {
   const [chat, setChat] = useState(null);
   const { currentUser } = useContext(AuthContext);
+  const {socket}=useContext(SocketContext);
+
+  const messageEndRef = useRef();
+
+  //const decrease = useNotificationStore((state) => state.decrease);
+
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
 
   const handleOpenChat = async (id, receiver) => {
     try {
       const res = await apiRequest("/chats/" + id);
+      if (!res.data.seenBy.includes(currentUser.id)) {
+        //decrease();
+      }
       setChat({ ...res.data, receiver });
     } catch (err) {
       console.log(err);
@@ -28,20 +41,50 @@ function Chat({ chats }) {
       const res = await apiRequest.post("/messages/" + chat.id, { text });
       setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
       e.target.reset();
+      socket.emit("sendMessage", {
+        receiverId: chat.receiver.id,
+        data: res.data,
+      });
     } catch (err) {
       console.log(err);
     }
   };
+
+  
+  useEffect(() => {
+    const read = async () => {
+      try {
+        await apiRequest.put("/chats/read/" + chat.id);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+
+  if (chat && socket) {
+    socket.on("getMessage", (data) => {
+      if (chat.id === data.chatId) {
+        setChat((prev) => ({ ...prev, messages: [...prev.messages, data] }));
+        read();
+      }
+    });
+  }
+  return () => {
+    socket.off("getMessage");
+  };
+}, [socket, chat]);
+
   return (
     <div className="chat">
-      <div className="messages">
+           <div className="messages">
         <h1>Messages</h1>
         {chats?.map((chat) => (
           <div
             className="message"
             key={chat.id}
             style={{
-              backgroundColor: chat.seenBy.includes(currentUser.id)
+              backgroundColor: 
+              chat.seenBy.includes(currentUser.id)||chat?.id===chat.id
                 ? "white"
                 : "#fecd514e",
             }}
