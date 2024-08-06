@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function HomePage() {
-  const {currentUser} = useContext(AuthContext)
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <div>
@@ -13,10 +13,13 @@ function HomePage() {
           <div className="wrapper">
             <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam
-              officia aut illum non iure molestias suscipit, dolore temporibus
-              at ab mollitia in ducimus porro, dolor, aspernatur commodi
-              blanditiis ad fuga!
+              Welcome to Find Real Estate, your premier destination for
+              discovering and securing your dream home. Whether you are searching
+              for a cozy apartment, a spacious family house, or a luxurious
+              estate, we provide a comprehensive listing of properties tailored
+              to your needs. Our user-friendly platform and expert guidance make
+              the process of finding your perfect place seamless and enjoyable.
+              Start your journey with us today and turn your dream into reality.
             </p>
             <SearchBar />
 

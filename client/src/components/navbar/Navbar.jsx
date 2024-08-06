@@ -19,8 +19,8 @@ const Navbar = () => {
     <nav>
       <div className="left">
         <a className="logo" href="/">
-          <img src="/logo.png"></img>
-          <span>Estate</span>
+          <img src="/logo3.png"></img>
+          <span>DreamNest Realty</span>
         </a>
 
         <Link to="/">Home</Link>
