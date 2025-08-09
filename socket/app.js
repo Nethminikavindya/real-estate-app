@@ -3,10 +3,12 @@ import { Server } from "socket.io";
 const io = new Server({
   cors: {
     origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true, 
   },
 });
 
-let onlineUser = [];
+let onlineUsers = [];
 
 const addUser = (userId, socketId) => {
   const userExists = onlineUsers.find((user) => user.userId === userId);
@@ -16,16 +18,18 @@ const addUser = (userId, socketId) => {
 };
 
 const removeUser = (socketId) => {
-  onlineUser = onlineUser.filter((user) => user.socketId !== socketId);
+  onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId);
 };
 const getUser = (userId) => {
-  return onlineUser.find((user) => user.userId === userId);
+  return onlineUsers.find((user) => user.userId === userId);
 };
 
 io.on("connection", (socket) => {
+  console.log(`New socket connected: ${socket.id}`);
+
   socket.on("newUser", (userId) => {
     addUser(userId, socket.id);
-    console.log(onlineUser);
+    console.log(onlineUsers);
   });
 
   socket.on("sendMessage", ({ receiverId, data }) => {
@@ -38,4 +42,6 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen("4000");
+io.listen(4000, () => {
+  console.log("Socket server is running on http://localhost:4000");
+});
